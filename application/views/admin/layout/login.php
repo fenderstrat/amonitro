@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="bg-black">
+<html lang="id">
 <head>
 	<meta charset="UTF-8">
 	<title>AdminLTE | Log in</title>

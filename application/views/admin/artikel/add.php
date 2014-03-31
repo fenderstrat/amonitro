@@ -53,16 +53,41 @@
  					</div>
  				</div>	 
  			</div><!-- /.box-body -->
- 		</div><!-- /.box -->
- 	</div><!-- /.col -->		
- </form>
-</div>
+ 			<div class="box box-danger">
+ 				<div class="box-header">
+ 					<i class="fa fa-warning"></i>
+ 					<h3 class="box-title">Description</h3>
+ 				</div><!-- /.box-header -->
+ 				<div class="box-body">
+ 					<div class="form-group">
+ 						<div class="col-md-12">
+ 							<textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+ 						</div>
+ 					</div>	 
+ 				</div><!-- /.box-body -->
+ 			</div>
+ 			<div class="box box-danger">
+ 				<div class="box-header">
+ 					<i class="fa fa-warning"></i>
+ 					<h3 class="box-title">Keyword</h3>
+ 				</div><!-- /.box-header -->
+ 				<div class="box-body">
+ 					<div class="form-group">
+ 						<div class="col-md-12">
+ 						<input type="text" name="keyword" id="input" class="form-control" title="keyword">
+ 						</div>
+ 					</div>	 
+ 				</div><!-- /.box-body -->
+ 			</div>
+ 		</div><!-- /.col -->		
+ 	</form>
+ </div>
 
-<?= link_tag('assets/js/plugins/datepicker/css/datepicker.css') ?>
-<?= script_tag('assets/js/plugins/ckeditor/ckeditor.js') ?>
-<?= script_tag('assets/js/plugins/datepicker/js/bootstrap-datepicker.js') ?>
-<script type="text/javascript">
-	$(function() {
+ <?= link_tag('assets/js/plugins/datepicker/css/datepicker.css') ?>
+ <?= script_tag('assets/js/plugins/ckeditor/ckeditor.js') ?>
+ <?= script_tag('assets/js/plugins/datepicker/js/bootstrap-datepicker.js') ?>
+ <script type="text/javascript">
+ 	$(function() {
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
                 CKEDITOR.replace('editor1');

@@ -22,26 +22,29 @@
 
       	<div class="form-box" id="login-box">
       		<div class="header">Sign In</div>
-      		<? form_open(base_url('admin/dashboard/login')) ?>
-      		<div class="body bg-gray">
-      			<div class="form-group">
-      				<input type="text" name="userid" class="form-control" placeholder="User ID"/>
-      			</div>
-      			<div class="form-group">
-      				<input type="password" name="password" class="form-control" placeholder="Password"/>
-      			</div>          
-      			<div class="form-group">
-      				<input type="checkbox" name="remember_me"/> Remember me
-      			</div>
-      		</div>
-      		<div class="footer">                                                               
-      			<button type="submit" class="btn bg-olive btn-block">Sign me in</button>  
 
-      			<p><a href="#">I forgot my password</a></p>
+      		<?= form_open(base_url('admin/login')) ?>
 
-      			<a href="register.html" class="text-center">Register a new membership</a>
-      		</div>
-      		<? form_close() ?>
+	      		<div class="body bg-gray">
+	      			<div class="form-group">
+	      				<input type="text" name="username" class="form-control" placeholder="User ID" required/>
+	      			</div>
+	      			<div class="form-group">
+	      				<input type="password" name="password" class="form-control" placeholder="Password" required/>
+	      			</div>          
+	      			<div class="form-group">
+	      				<input type="checkbox" name="remember_me"/> Remember me
+	      			</div>
+	      		</div>
+	      		<div class="footer">                       
+	      			<input type="submit" name="login" class="btn bg-olive btn-block" value="Sign me in">                                
+
+	      			<p><a href="#">I forgot my password</a></p>
+
+	      			<a href="register.html" class="text-center">Register a new membership</a>
+	      		</div>
+
+      		<?= form_close() ?>
 
       		<div class="margin text-center">
       			<span>Sign in using social networks</span>

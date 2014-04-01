@@ -26,11 +26,15 @@
       		<?= form_open(base_url('admin/login')) ?>
 
 	      		<div class="body bg-gray">
+	      			<?= validation_errors() ?>
+	      			<? if($this->session->flashdata('login_failed') !== null) : ?>
+					<a class="text-danger"><?= $this->session->flashdata('login_failed') ?></a>
+	      			<? endif ?>
 	      			<div class="form-group">
-	      				<input type="text" name="username" class="form-control" placeholder="User ID" required/>
+	      				<input type="text" name="username" class="form-control" placeholder="User ID"/>
 	      			</div>
 	      			<div class="form-group">
-	      				<input type="password" name="password" class="form-control" placeholder="Password" required/>
+	      				<input type="password" name="password" class="form-control" placeholder="Password"/>
 	      			</div>          
 	      			<div class="form-group">
 	      				<input type="checkbox" name="remember_me"/> Remember me

@@ -11,9 +11,6 @@ class Artikel extends Base_admin {
 
 	public function index()
 	{
-		$data['title'] = 'Artikel';
-		$data['template'] =  'admin/artikel/index';
-
 		# Cek jika database tidak kosong
 		if($this->artikel->all()->num_rows() !== 0){
 			$data['content'] = $this->artikel->all()->result();
@@ -21,6 +18,8 @@ class Artikel extends Base_admin {
 			$data['content'] = null;
 		}
 
+		$data['title'] = 'Artikel';
+		$data['template'] =  'admin/artikel/index';
 		$this->load->view('admin/layout/master', $data);
 	}
 
@@ -30,23 +29,23 @@ class Artikel extends Base_admin {
 	}
 
 	public function add()
-	{
+	{		
 		$data['title'] = 'Tambah Artikel';
 		$data['template'] =  'admin/artikel/add';
-
-		# Cek jika database tidak kosong
-		// if($this->artikel->all()->num_rows() !== 0){
-		// 	$data['content'] = $this->artikel->all()->result();
-		// } else {
-		// 	$data['content'] = null;
-		// }
-
 		$this->load->view('admin/layout/master', $data);
 	}
 
 	public function save()
 	{
-		# code...
+		if($this->get_input->artikel() !== false) {
+			$artikel = $this->get_input->artikel();
+			$kategori_artikel = $this->get_input->kategori_artikel();
+			$this->artikel->save($artikel, $kategori_artikel);
+			$this->message->add_success();
+		} else {
+			$this->message->validation();
+		}
+		redirect('admin/artikel/add');
 	}
 
 	public function edit()

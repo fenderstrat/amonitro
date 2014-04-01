@@ -12,7 +12,17 @@ class Message {
 
 	public function login_failed()
 	{
-		$this->instance->session->set_flashdata('login_failed', 'Gagal login! Pastikan username dan password Andasudah benar!');
+		$this->instance->session->set_flashdata('login_failed', 'Gagal login! Pastikan username dan password Anda sudah benar!');
+	}
+
+	public function validation()
+	{
+		$this->instance->session->set_flashdata('validation', validation_errors());
+	}
+
+	public function add_success()
+	{
+		$this->instance->session->set_flashdata('add_success', 'Data berhasil ditambahkan');
 	}
 
 }

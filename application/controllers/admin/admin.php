@@ -22,6 +22,11 @@ class Admin extends CI_Controller {
 	
 	public function login()
 	{
+		$this->load->view('admin/layout/login');
+	}
+
+	public function do_login()
+	{
 		# cek validasi dan ambil data input dari form (library : get_input; method : user) 
 		# jika validasi gagal, tampilkan form login
 		if($this->get_input->user() !== false) {
@@ -41,15 +46,18 @@ class Admin extends CI_Controller {
 				redirect('admin/dashboard');
 			} else {
 				$this->message->login_failed();
-				redirect('admin/login');
 			} 
+		}else {
+			$this->message->validation();
 		}
-		$this->load->view('admin/layout/login');
+		redirect('admin/login');
 	}
 
 	public function logout()
 	{
-		# code...
+		$this->session->unset_userdata('admin');
+		$this->session->unset_userdata('level');
+		redirect('admin/login');
 	}
 	
 }

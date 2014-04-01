@@ -1,12 +1,18 @@
  <div class="row">
- 	<form action="" method="POST" class="form-horizontal" role="form">
+      		<?= form_open(base_url('admin/artikel/save')) ?>
+ 	
+	      	
+
  		<div class="col-md-8">
  			<div class="box box-danger">
  				<div class="box-header"></div><!-- /.box-header -->
- 				<div class="box-body">	 			
+ 				<div class="box-body">
+ 				<? if($this->session->flashdata('validation') !== null) : ?>
+					<a class="text-danger"><?= $this->session->flashdata('validation') ?></a>
+	      			<? endif ?>			
  					<div class="form-group">
  						<div class="col-md-12">
- 							<input type="text" name="judul" class="form-control" required="required" title="judul" placeholder="Judul">
+ 							<input type="text" name="judul" class="form-control"  title="judul" placeholder="Judul">
  						</div>
  					</div>	 			
  					<div class="form-group">
@@ -79,7 +85,8 @@
  					</div>	 
  				</div><!-- /.box-body -->
  			</div>
- 		</div><!-- /.col -->		
+ 		</div><!-- /.col -->	
+ 		<button type="submit" class="btn btn-primary">Submit</button>	
  	</form>
  </div>
 

@@ -14,6 +14,11 @@ class Artikel_model extends CI_Model {
 			->get($this->table);
 	}	
 
+	public function save($artikel, $kategori_artikel)
+	{
+		return $this->db->insert($this->table, $artikel)->insert($this->kategori_table, $kategori_artikel); 
+	}
+
 }
 
 /* End of file artikel.php */

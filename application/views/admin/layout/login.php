@@ -23,12 +23,14 @@
       	<div class="form-box" id="login-box">
       		<div class="header">Sign In</div>
 
-      		<?= form_open(base_url('admin/login')) ?>
+      		<?= form_open(base_url('admin/do_login')) ?>
 
 	      		<div class="body bg-gray">
-	      			<?= validation_errors() ?>
 	      			<? if($this->session->flashdata('login_failed') !== null) : ?>
 					<a class="text-danger"><?= $this->session->flashdata('login_failed') ?></a>
+	      			<? endif ?>
+	      			<? if($this->session->flashdata('validation') !== null) : ?>
+					<a class="text-danger"><?= $this->session->flashdata('validation') ?></a>
 	      			<? endif ?>
 	      			<div class="form-group">
 	      				<input type="text" name="username" class="form-control" placeholder="User ID"/>

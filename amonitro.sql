@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2014 at 04:00 PM
+-- Generation Time: Apr 02, 2014 at 01:45 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -83,6 +83,26 @@ CREATE TABLE IF NOT EXISTS `kategori_artikel` (
 
 INSERT INTO `kategori_artikel` (`kategori_artikel_id`, `artikel_id`, `kategori_id`) VALUES
 (1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `level` int(1) NOT NULL,
+  `last_login` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `password`, `level`, `last_login`) VALUES
+('admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '2014-04-04 00:00:00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -15,10 +15,7 @@ class Get_input {
 		# load helper untuk fungsi hash
 		$this->instance->load->helper('security');
 		
-		$this->instance->form_validation->set_rules('username', 'Username', 'required');
-		$this->instance->form_validation->set_rules('password', 'Password', 'required');
-
-		if($this->instance->form_validation->run() === true) {
+		if($this->instance->form_validation->run('user') === true) {
 			$data = array(
 				'username' => $this->instance->input->post('username'),
 				# hash password
@@ -32,13 +29,7 @@ class Get_input {
 
 	public function artikel()
 	{	
-		$this->instance->form_validation->set_rules('judul', 'Judul', 'required');
-		$this->instance->form_validation->set_rules('isi', 'Isi', 'required');
-		$this->instance->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
-		$this->instance->form_validation->set_rules('keyword', 'Keyword', 'required');
-		$this->instance->form_validation->set_rules('tag', 'Tag', 'required');
-
-		if($this->instance->form_validation->run() === true) {
+		if($this->instance->form_validation->run('artikel') === true) {
 
 			#cek jika date kosong
 			if($this->instance->input->post('tanggal') == null) {
@@ -71,7 +62,7 @@ class Get_input {
 
 		$data = array(
 			'kategori_id' => $kategori,
-			'artikel_id' => $this->db->insert_id();
+			'artikel_id' => $this->db->insert_id()
 		);
 		return $data;
 	}

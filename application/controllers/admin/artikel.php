@@ -40,8 +40,12 @@ class Artikel extends Base_admin {
 		if($this->get_input->artikel() !== false) {
 			$artikel = $this->get_input->artikel();
 			$kategori_artikel = $this->get_input->kategori_artikel();
-			$this->artikel->save($artikel, $kategori_artikel);
-			$this->message->add_success();
+			$save = $this->artikel->save($artikel, $kategori_artikel);
+			if($save) {
+				$this->message->add_success();
+			} else {
+				$this->message->add_fail();
+			}
 		} else {
 			$this->message->validation();
 		}

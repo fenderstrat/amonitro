@@ -25,6 +25,11 @@ class Message {
 		$this->instance->session->set_flashdata('add_success', 'Data berhasil ditambahkan');
 	}
 
+	public function add_fail()
+	{
+		$this->instance->session->set_flashdata('add_success', 'Data gagal ditambahkan');
+	}
+
 }
 
 /* End of file message.php */

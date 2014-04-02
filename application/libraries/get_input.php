@@ -15,7 +15,7 @@ class Get_input {
 		# load helper untuk fungsi hash
 		$this->instance->load->helper('security');
 		
-		if($this->instance->form_validation->run('user') === true) {
+		if($this->instance->form_validation->run('login') === true) {
 			$data = array(
 				'username' => $this->instance->input->post('username'),
 				# hash password
@@ -37,6 +37,7 @@ class Get_input {
 			} else {
 				$tanggal = $this->instance->input->post('tanggal');
 			}
+			
 			$data = array(
 				'judul' 		=> $this->instance->input->post('judul'),
 				'isi' 		=> $this->instance->input->post('isi'),

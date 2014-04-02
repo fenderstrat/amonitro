@@ -1,6 +1,6 @@
 <?php
 $config = array(
-	'signup' => array(
+	'login' => array(
 		array(
 			'field' => 'username', 'label' => 'Username', 'rules' => 'required'
 		),

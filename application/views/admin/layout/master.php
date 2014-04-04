@@ -6,7 +6,7 @@
 	<?= link_tag('assets/css/bootstrap.min.css') ?>
 	<?= link_tag('assets/css/font-awesome.min.css') ?>
 	<?= link_tag('assets/css/ionicons.min.css') ?>
-	<?= link_tag('assets/css/AdminLTE.css') ?>
+	<?= link_tag('assets/css/anpanel.css') ?>
 	
 	<!-- Load JS -->
 	<?= script_tag('assets/js/jquery-2.0.2.min.js') ?>
@@ -54,7 +54,7 @@
 	</header>
 
 	<!-- Load JS -->
-	<?= script_tag('assets/js/AdminLTE/app.js') ?>
-	<?= script_tag('assets/js/AdminLTE/dashboard.js') ?>
+	<?= script_tag('assets/js/anpanel/app.js') ?>
+	<?= script_tag('assets/js/anpanel/dashboard.js') ?>
 </body>
 </html>

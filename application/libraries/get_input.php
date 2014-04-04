@@ -18,7 +18,6 @@ class Get_input {
 		if($this->instance->form_validation->run('login') === true) {
 			$data = array(
 				'username' => $this->instance->input->post('username'),
-				# hash password
 				'password' => do_hash($this->instance->input->post('password'))
 			);
 			return $data;

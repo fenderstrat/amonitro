@@ -27,7 +27,7 @@ class Message {
 
 	public function add_fail()
 	{
-		$this->instance->session->set_flashdata('add_success', 'Data gagal ditambahkan');
+		$this->instance->session->set_flashdata('add_fail', 'Data gagal ditambahkan');
 	}
 
 }

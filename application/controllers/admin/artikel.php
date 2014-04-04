@@ -7,6 +7,7 @@ class Artikel extends Base_admin {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('artikel_model','artikel');
+		$this->load->model('kategori_model','kategori');
 	}
 
 	public function index()
@@ -32,6 +33,7 @@ class Artikel extends Base_admin {
 	{		
 		$data['title'] = 'Tambah Artikel';
 		$data['template'] =  'admin/artikel/add';
+		$data['kategori'] = $this->kategori->all()->result();
 		$this->load->view('admin/layout/master', $data);
 	}
 

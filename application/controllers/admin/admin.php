@@ -6,7 +6,7 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model', 'user');
-		$this->load->library(array('get_input', 'message'));
+		$this->load->library(array('get_input'));
 	}
 
 	public function dashboard()
@@ -47,8 +47,6 @@ class Admin extends CI_Controller {
 			} else {
 				$this->message->login_failed();
 			} 
-		}else {
-			$this->message->validation();
 		}
 		redirect('admin/login');
 	}

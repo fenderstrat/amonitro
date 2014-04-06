@@ -42,22 +42,22 @@
 
 					<div class="form-group">
 						<label for="nama">Judul Artikel</label>
-						<input type="text" name="jd" value="<?= $this->session->flashdata('jd');  ?>" class="form-control" id="nama" placeholder="Masukan Judul">
+						<input type="text" name="jd" value="<?= $row->judul ?>" class="form-control" id="nama" placeholder="Masukan Judul">
 					</div>
 					<div class="form-group">
 						<textarea id="editor1" name="isi" rows="10" cols="80">
-							<?= $this->session->flashdata('isi');  ?>
+							<?= $row->isi ?>
 						</textarea>
 					</div>
 					<div class="form-group">
 						<label>Deskripsi SEO</label>
 						<textarea name="deskripsi" title="Ini Adalah SEO Deskrpisi Untuk Meningkatkan Hasil Pencairan Pada Search Engine. Jika Tidak Membutuhkannya Maka Tinggalkan Kosong Maka Kami Akan Menset Paragraf Pertama Dalam Artikel Anda Sebagai SEO Deskripsinya" class="form-control text-left" rows="3" placeholder="Masukan Deskrpsi SEO.">
-							<?= $this->session->flashdata('deskripsi');  ?>
+							<?= $row->deskripsi  ?>
 						</textarea>
 					</div>
 					<div class="form-group">
 						<label for="nama">Tags</label>
-						<input value="<?= $this->session->flashdata('tag'); ?>" type="text" name="tag" class="form-control" id="nama" placeholder="Masukan Tags Artikel Pisahkan Dengan Koma">
+						<input value="<?= $row->tag ?>" type="text" name="tag" class="form-control" id="nama" placeholder="Masukan Tags Artikel Pisahkan Dengan Koma">
 					</div>
 
 				</div>
@@ -74,7 +74,7 @@
 						<div id="datetimepicker1" class="input-append date">
 							<div class="form-group">
 								<div class='col-md-8 input-group date' id='datetimepicker1'>
-									<input placeholder="<?= date('d/m/Y H:i') ?>"  type='text' name="tgl" class="form-control" />
+									<input placeholder="<?= date('d/m/Y H:i') ?>" value="<?= $row->tanggal ?>"  type='text' name="tgl" class="form-control" />
 									<span value="" class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 								</span>
 							</div>
@@ -85,8 +85,13 @@
 					<label>Status Publish:</label>
 					<div class='col-md-8 input-group'>
 						<select name="sts" class="form-control">
-							<option value="publish">Publish</option>
-							<option value="draft">Draft</option>
+							<? if($row->status === 'draft')  : ?>
+								<option value="publish">Publish</option>
+								<option value="draft" selected>Draft</option>
+							<? else : ?>
+								<option value="publish" selected>Publish</option>
+								<option value="draft">Draft</option>
+							<? endif ?>
 						</select>
 					</div>
 				</div>

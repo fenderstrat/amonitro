@@ -56,5 +56,6 @@
 	<!-- Load JS -->
 	<?= script_tag('assets/js/anpanel/app.js') ?>
 	<?= script_tag('assets/js/anpanel/dashboard.js') ?>
+	<?= script_tag('assets/js/plugins/iCheck//icheck.min.js') ?>
 </body>
 </html>

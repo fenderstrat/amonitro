@@ -431,6 +431,7 @@ if ( ! function_exists('nbs'))
 	}
 }
 
+
 /**
  * Generates javascript tag
  *

@@ -30,6 +30,11 @@ class Message {
 		$this->instance->session->set_flashdata('add_fail', 'Data gagal ditambahkan');
 	}
 
+	public function upload_error()
+	{
+		$this->instance->session->set_flashdata('upload_error', $this->instance->upload->display_errors() );
+	}
+
 }
 
 /* End of file message.php */

@@ -14,9 +14,23 @@ class Artikel_model extends CI_Model {
 			->get($this->table);
 	}	
 
-	public function save($artikel, $kategori_artikel)
+	public function find($id)
 	{
-		return $this->db->insert($this->table, $artikel)->insert($this->kategori_table, $kategori_artikel); 
+		return $this->db
+			->join($this->kategori_artikel_table, $this->table.'.artikel_id = '.$this->kategori_artikel_table.'.artikel_id')
+			->join($this->kategori_table, $this->kategori_artikel_table.'.kategori_id = '.$this->kategori_table.'.kategori_id')
+			->where($this->table.'.artikel_id', $id)
+			->get($this->table);
+	}	
+
+	public function save($artikel)
+	{
+		$this->db->insert($this->table, $artikel);
+	}
+
+	public function save_kategori_artikel($kategori_artikel)
+	{
+		$this->db->insert_batch($this->kategori_artikel_table, $kategori_artikel); 
 	}
 
 }

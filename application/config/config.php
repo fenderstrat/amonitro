@@ -341,7 +341,7 @@ $config['time_reference'] = 'local';
 | in your view files.  Options are TRUE or FALSE (boolean)
 |
 */
-$config['rewrite_short_tags'] = TRUE;
+$config['rewrite_short_tags'] = FALSE;
 
 
 /*
@@ -355,7 +355,8 @@ $config['rewrite_short_tags'] = TRUE;
 | Comma-delimited, e.g. '10.0.1.200,10.0.1.201'
 |
 */
-
 $config['proxy_ips'] = '';
+
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */

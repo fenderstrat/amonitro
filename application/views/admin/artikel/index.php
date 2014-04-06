@@ -12,38 +12,72 @@
 						<b>Alert!</b> Data belum ada !
 					</div>
 				<? else : ?>
-					<? foreach ($content as $row):  ?>
-						<table id="artikel" class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th width="55%">Judul</th>
-									<th width="15%">Kategori</th>
-									<th width="15%">Status</th>
-									<th width="15%">Tanggal</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<?= $row->judul ?>
-										<div class="row-actions">
-  											<?= anchor(base_url('admin/artikel/edit/'.$row->artikel_id), 'Edit', array('title' => 'Edit', 'class'=>'text-primary')); ?>
-  											<?= anchor(base_url('artikel/detail/'.$row->artikel_id.'/'. url_title($row->judul)), 'View', array('title' => 'View', 'class'=>'text-success')); ?>
-  											<?= anchor(base_url('admin/artikel/delete/'.$row->artikel_id), 'Delete', array('title' => 'Delete', 'class'=>'text-danger')); ?>
-										</div>
-									</td>
-									<td><?= $row->kategori ?></td>
-									<td><?= $row->status ?></td>
-									<td><?= $row->tanggal ?></td>
-								</tr>
-							</tbody>
-						</table>
-					<? endforeach ?>
+				<? if($this->session->flashdata('delete_fail')) : ?>
+					<div class="alert alert-danger alert-dismissable">
+						<i class="fa fa-ban"></i>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<?= $this->session->flashdata('delete_fail') ?>
+					</div>
 				<? endif ?>
-			</div>
-		</div>
+				<? if($this->session->flashdata('delete_success')) : ?>
+					<div class="alert alert-success alert-dismissable">
+						<i class="fa fa-check"></i>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<?= $this->session->flashdata('delete_success') ?>
+					</div>
+				<? endif ?>
+			<table id="example1" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>No</th>
+			                                    <th>Judul Artikel</th>
+			                                    <th>Kategori</th>
+			                                    <th>Tags</th>
+			                                    <th>Tanggal</th>
+			                                    <th>Aksi</th>
+					</tr>
+				</thead>
+				<tbody>
+					<? $i = 1 ?>
+					<? foreach ($content as $row):  ?>
+						<tr>
+							<td>
+								<?=  $i ?>
+							</td>
+							<td>
+								<?= character_limiter($row->judul, 40) ?>
+							</td>
+							<td>
+								<?= $row->kategori ?>
+							</td>
+							<td>
+								<?=  character_limiter($row->tag, 10) ?>
+							</td>
+							<td>
+								<?= $row->tanggal ?>
+								<br>
+								<?= $row->status ?>
+							</td>
+							<td>
+								<?= anchor(base_url('admin/artikel/edit/'.$row->artikel_id.'/'.url_title($row->judul)), 'Edit', array('title' => 'Edit', 'class'=>'btn btn-sm btn-primary')); ?>
+								<?= anchor(base_url('admin/artikel/detail/'.$row->artikel_id.'/'.url_title($row->judul)), 'Lihat', array('title' => 'Edit', 'class'=>'btn btn-sm btn-success')); ?>
+								<? if($row->status = 'publish') :?>
+									<?= anchor(base_url('admin/artikel/status/'.$row->artikel_id.'/'.url_title($row->judul)), 'Draft', array('title' => 'Edit', 'class'=>'btn btn-sm btn-warning')); ?>
+								<? else : ?>
+									<?= anchor(base_url('admin/artikel/status/'.$row->artikel_id.'/'.url_title($row->judul)), 'Publish', array('title' => 'Edit', 'class'=>'btn btn-sm btn-warning')); ?>
+								<? endif ?>
+								<?= anchor(base_url('admin/artikel/trash/'.$row->artikel_id.'/'.url_title($row->judul)), 'Sampah', array('title' => 'Edit', 'class'=>'btn btn-sm btn-danger')); ?>
+							</td>
+						</tr>
+					<? $i++; ?>
+					<? endforeach ?>
+				</tbody>
+			</table>
+	<? endif ?>
+</div>
+</div>
 
-	</div>
+</div>
 </div>
 
 <?= link_tag('assets/css/datatables/dataTables.bootstrap.css') ?>
@@ -62,4 +96,10 @@
 			"bAutoWidth": false
 		});
 	});
+	 $("#example1").dataTable({
+                    "aoColumns": [
+                  { "bSortable": false },
+                  null, null,null, null,
+                  { "bSortable": false }
+                ] } );
 </script>

@@ -46,6 +46,5 @@ $route['admin/do_login'] = "admin/admin/do_login";
 $route['admin/logout'] = "admin/admin/logout";
 $route['admin/dashboard'] = "admin/admin/dashboard";
 
-
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

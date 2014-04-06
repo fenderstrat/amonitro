@@ -39,24 +39,40 @@ class Artikel extends Base_admin {
 
 	public function save()
 	{
-		if($this->get_input->artikel() !== false) {
-			$artikel = $this->get_input->artikel();
+		# class library 	: get_input
+		# class model 	: artikel_model as artikel
+		# ambil input artikel dan cek validasi
+		$artikel = $this->get_input->artikel();
+
+		# jika validasi berhasil, simpan data ke database
+		# jika gagal, redirect ke add artikel dan tampilkan pesan validasi error
+		if($artikel !== false) {
+			# simpan ke database
+			$save = $this->artikel->save($artikel);
+
+			# class library 	: get_input
+			# class model 	: artikel_model as artikel
+			# ambil input kategori dan cek validasi
 			$kategori_artikel = $this->get_input->kategori_artikel();
-			$save = $this->artikel->save($artikel, $kategori_artikel);
-			if($save) {
-				$this->message->add_success();
-			} else {
-				$this->message->add_fail();
-			}
+			$save_kategori_artikel = $this->artikel->save_kategori_artikel($kategori_artikel);
+
+			# class library 	: message
+			# tampilkan pesan berhasil
+			$this->message->add_success();
 		} else {
-			$this->message->validation();
+			# tampilkan pesan gagal
+			$this->message->add_fail();
 		}
 		redirect('admin/artikel/add');
 	}
 
 	public function edit()
 	{
-		# code...
+		$id = $this->uri->segment(4);
+		$data['title'] = 'Edit Artikel';
+		$data['template'] =  'admin/artikel/edit';
+		$data['row'] = $this->artikel->find($id)->row();
+		$this->load->view('admin/layout/master', $data);
 	}
 
 	public function update()

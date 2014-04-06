@@ -10,19 +10,10 @@ $config = array(
 	),
 	'artikel' => array(
 		array(
-			'field' => 'judul', 'label' => 'Judul', 'rules' => 'required'
+			'field' => 'jd', 'label' => 'Judul', 'rules' => 'required'
 		),
 		array(
 			'field' => 'isi', 'label' => 'Isi', 'rules' => 'required'
 		),
-		array(
-			'field' => 'deskripsi', 'label' => 'Deskripsi', 'rules' => 'required'
-		),
-		array(
-			'field' => 'keyword', 'label' => 'Keyword', 'rules' => 'required'
-		),
-		array(
-			'field' => 'tag', 'label' => 'Tag', 'rules' => 'required'
-		)
 	)                          
 );

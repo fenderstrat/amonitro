@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-function redata() {
+function redata()
+{
 	foreach($_POST as $Key => $Value)
 	{
 		$instance = & get_instance();
@@ -8,6 +9,7 @@ function redata() {
 	}
 }
 
-function get_first_paragraph($string) {
+function getFirstParagraph($string)
+{
 	return strip_tags(substr($string,0, strpos($string, "</p>")+4));
 }

@@ -478,6 +478,5 @@ if ( ! function_exists('script_tag')) {
 		return $script;
 	}
 }
-
 /* End of file html_helper.php */
 /* Location: ./system/helpers/html_helper.php */

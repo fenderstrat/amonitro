@@ -9,64 +9,48 @@
 	<!-- font Awesome -->
 	<?= link_tag('assets/css/font-awesome.min.css') ?>
 	<!-- Theme style -->
-	<?= link_tag('assets/css/AdminLTE.css') ?>
+	<?= link_tag('assets/css/anpanel.css') ?>
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-          <![endif]-->
-      </head>
-      <body class="bg-black">
+</head>
+<body class="bg-black">
+	<div class="form-box" id="login-box">
+		<!-- Error Message -->
+		<? if($this->session->flashdata('login_failed')) : ?>
+			<div class="callout callout-danger">
+				<h4>
+					<p><?= $this->session->flashdata('login_failed') ?></p>
+				</h4>
+			</div>
+		<? endif ?>
+		<? if($this->session->flashdata('validation')) : ?>
+			<div class="callout callout-danger">
+				<h4>
+					<p><?= $this->session->flashdata('validation') ?></p>
+				</h4>
+			</div>
+		<? endif ?>
 
-      	<div class="form-box" id="login-box">
-      		<div class="header">Sign In</div>
+		<div class="header">Sign In</div>
+		<?= form_open(base_url('admin/process')) ?>
+			<div class="body bg-gray">
+				<div class="form-group">
+					<input type="text" name="username" class="form-control" placeholder="Username"/>
+				</div>
+				<div class="form-group">
+					<input type="password" name="password" class="form-control" placeholder="Password"/>
+				</div> 
+			</div>
+			<div class="footer">  
+				<button type="submit" class="btn bg-olive btn-block">Sign me in</button>
+				<a href="register.html" class="text-center">Kembali Ke Halaman Utama</a>
+			</div>
+		<?= form_close() ?>
+	</div>
 
-      		<?= form_open(base_url('admin/do_login')) ?>
+	<!-- jQuery 2.0.2 -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<?= script_tag('assets/js/bootstrap.min.js') ?>
 
-	      		<div class="body bg-gray">
-	      			<? if($this->session->flashdata('login_failed') !== null) : ?>
-					<a class="text-danger"><?= $this->session->flashdata('login_failed') ?></a>
-	      			<? endif ?>
-	      			<? if($this->session->flashdata('validation') !== null) : ?>
-					<a class="text-danger"><?= $this->session->flashdata('validation') ?></a>
-	      			<? endif ?>
-	      			<div class="form-group">
-	      				<input type="text" name="username" class="form-control" placeholder="User ID"/>
-	      			</div>
-	      			<div class="form-group">
-	      				<input type="password" name="password" class="form-control" placeholder="Password"/>
-	      			</div>          
-	      			<div class="form-group">
-	      				<input type="checkbox" name="remember_me"/> Remember me
-	      			</div>
-	      		</div>
-	      		<div class="footer">                       
-	      			<input type="submit" name="login" class="btn bg-olive btn-block" value="Sign me in">                                
-
-	      			<p><a href="#">I forgot my password</a></p>
-
-	      			<a href="register.html" class="text-center">Register a new membership</a>
-	      		</div>
-
-      		<?= form_close() ?>
-
-      		<div class="margin text-center">
-      			<span>Sign in using social networks</span>
-      			<br/>
-      			<button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
-      			<button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
-      			<button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
-
-      		</div>
-      	</div>
-
-
-      	<!-- jQuery 2.0.2 -->
-      	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-      	<!-- Bootstrap -->
-      	<?= script_tag('assets/js/bootstrap.min.js') ?>
-
-      </body>
-      </html>
+</body>
+</html>

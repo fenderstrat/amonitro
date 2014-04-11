@@ -3,10 +3,8 @@
 class Welcome extends CI_Controller {
 
 	public function index()
-	{		
-		$data['title'] = 'Artikel';
-		$data['template']=  'admin/dashboard/index';
-		$this->load->view('admin/layout/master', $data);
+	{
+		$this->load->view('welcome_message');
 	}
 }
 

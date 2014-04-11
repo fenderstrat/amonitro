@@ -41,10 +41,19 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
-$route['admin/login'] = "admin/admin/login";
-$route['admin/do_login'] = "admin/admin/do_login";
-$route['admin/logout'] = "admin/admin/logout";
-$route['admin/dashboard'] = "admin/admin/dashboard";
 
+#admin routes
+$route['admin'] = "admin/admin_controller";
+$route['admin/login'] = "admin/admin_controller/login";
+$route['admin/process'] = "admin/admin_controller/process";
+$route['admin/dashboard'] = "admin/admin_controller/dashboard";
+$route['admin/logout'] = "admin/admin_controller/logout";
+
+# artikel routes
+$route['admin/artikel'] = "admin/artikel_controller";
+$route['admin/artikel/add'] = "admin/artikel_controller/add";
+$route['admin/artikel/save'] = "admin/artikel_controller/save";
+$route['admin/artikel/edit/(:num)/(:any)'] = "admin/artikel_controller/edit";
+$route['admin/artikel/update'] = "admin/artikel_controller/update";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

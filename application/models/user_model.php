@@ -2,13 +2,13 @@
 
 class User_model extends CI_Model {
 
-	protected $table = 'user';
+    protected $table = 'user';
 
-	# cek jika user ditemukan
-	public function check_user($data)
-	{
-		return $this->db->get_where($this->table, $data);
-	}
+    # cek jika user ditemukan
+    public function check_user($data)
+    {
+        return $this->db->get_where($this->table, $data);
+    }
 
 }
 

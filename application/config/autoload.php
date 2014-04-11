@@ -52,7 +52,10 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'message');
+$autoload['libraries'] = array('database', 'session');
+
+# load library di folder libraries/services/message.php
+// $autoload['libraries'] = array('services/message');
 
 
 /*
@@ -64,7 +67,7 @@ $autoload['libraries'] = array('database', 'session', 'message');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('html','url', 'form', 'text', 'services');
+$autoload['helper'] = array('html','url', 'form', 'text');
 
 
 /*

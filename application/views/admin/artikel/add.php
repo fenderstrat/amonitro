@@ -107,13 +107,17 @@
 				</div>
 
 				<!-- loop kategori  -->
-				<? foreach($kategori as $row) : ?>
-				<label class="badge bg-blue">
-					<input type="checkbox" name="kategori[]" value="<?= $row->kategori_id ?>">
-					<i class="icon-only icon-bold bigger-110"></i>
-					<?= $row->kategori ?>
-				</label>
-				<? endforeach ?>
+				<? if($kategori === null) : ?>
+					<label class="badge bg-red">Kategori belum ada</label>
+				<? else : ?>
+					<? foreach($kategori as $row) : ?>
+					<label class="badge bg-blue">
+						<input type="checkbox" name="kategori[]" value="<?= $row->kategori_id ?>">
+						<i class="icon-only icon-bold bigger-110"></i>
+						<?= $row->kategori ?>
+					</label>
+					<? endforeach ?>
+				<? endif ?>
 			</div>
 		</div><!-- /.box -->
 	</div><!-- /.col-->

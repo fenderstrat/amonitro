@@ -5,7 +5,7 @@
 				<h3 class="box-title">Daftar Artikel</h3>                                    
 			</div>
 			<div class="box-body table-responsive">
-				<? if($content === null) : ?>
+				<? if($artikel === null) : ?>
 					<div class="alert alert-warning alert-dismissable">
 						<i class="fa fa-ban"></i>
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -30,25 +30,27 @@
 				<thead>
 					<tr>
 						<th>No</th>
-			                                    <th>Judul Artikel</th>
-			                                    <th>Kategori</th>
-			                                    <th>Tags</th>
-			                                    <th>Tanggal</th>
-			                                    <th>Aksi</th>
+                        <th>Judul Artikel</th>
+                        <th>Kategori</th>
+                        <th>Tags</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
 					<? $i = 1 ?>
-					<? foreach ($content as $row):  ?>
+					<? foreach ($artikel as $row):  ?>
 						<tr>
 							<td>
-								<?=  $i ?>
+								<?= $i ?>
 							</td>
 							<td>
 								<?= character_limiter($row->judul, 40) ?>
 							</td>
 							<td>
-								<?= $row->kategori ?>
+								<? foreach (${'artikel_kategori'.$i} as $kategori_row):  ?>
+										<i> <?= $kategori_row->kategori ?>, </i>
+								<? endforeach ?>
 							</td>
 							<td>
 								<?=  character_limiter($row->tag, 10) ?>

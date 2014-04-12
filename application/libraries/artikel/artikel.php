@@ -20,31 +20,45 @@ class Artikel
 		));
 	}
 
-	public function input()
+	
+	
+	/**
+	 * function yang digunakan untuk mengambil input add artikel
+	 * @return boolean jika validasi gagal
+	 * @return string jika validasi berhasil
+	 */
+	public function post_add()
 	{
-		# Cek validasi sesua dengan rule yang ada di config/form_validation.php
-		# Jika validasi gagal, tampilkan pesan gagal validasi.
+		/**
+		 * Cek validasi sesuai dengan rule yang ada di config/form_validation.php
+		 * Jika validasi gagal, tampilkan pesan gagal validasi.
+		 */
 		if ($this->instance->form_validation->run('artikel') === true) {
 
-			# Method upload digunakan untuk mengupload gambar dengan parameter nama dari post field
-			# Jika field gambar kosong, nilai kembalian adalah empty string ('')
-			# Jika field gambar tidak kosong, lakukan proses upload. Nilai kembalian adalah nama gambar yang diupload
-			# Jika file yang diupload gagal,  nilai kembalian adalah false dan akan menampilkan pesan gagal
+			/**
+			* Method upload digunakan untuk mengupload gambar dengan parameter nama dari field yang dipost.
+			* @var string
+			* @return string Jika field gambar kosong, nilai kembalian adalah empty string ('').
+			* @return string Jika field gambar tidak kosong, lakukan proses upload. Nilai kembalian adalah nama gambar yang diupload
+			* @return boolean Jika file yang diupload gagal,  nilai kembalian adalah false dan akan menampilkan pesan gagal
+			*/
 			$image_upload = $this->instance->media->upload('ico');
 
 			if ($image_upload  !== false) {
 				# jika tanggal kosong masukkan tanggal hari ini.
-				if ($this->instance->input->post('tgl') == null) {
+				if ($this->instance->input->post('tgl') === '') {
 					$tanggal = date("Y-m-d H:i:s");
 				} else {
 					$tanggal = $this->instance->input->post('tgl');
 				}
 
 				# jika deskripsi kosong ambil deskripsi dari pos.
-				if ($this->instance->input->post('deskripsi') == null) {
-					# file helper/services_helper.php
-					# method get_first_paragraph()
-					# ambil paragraf pertama
+				if ($this->instance->input->post('deskripsi') === '') {
+					/**
+					 * Ambil paragraf pertama 
+					 * @file	: helper/services_helper.php
+					 * @var string
+					 */
 					$deskripsi = get_first_paragraph($this->instance->input->post('isi'));
 				} else {
 					$deskripsi = $this->instance->input->post('deskripsi');
@@ -69,26 +83,28 @@ class Artikel
 			# Tampilkan validasi error
 			$this->instance->message->validation();
 
-			# File  : helper/services_helper.php;
-			# Repopulate data yang disubmit
+			/**
+			 * @file  : helper/services_helper.php;
+			 * Repopulate data yang disubmit 
+			 */
 			redata();
 
 			return false;
 		}
 	}
 
-	public function input_kategori()
+	public function post_add_kategori()
 	{	
 
 		# simpan kategori sebagai array
 		$data = array();
 		
 		#cek jika kategori kosong
-		if($this->instance->input->post('kategori') == null) {
+		if($this->instance->input->post('kategori') == "") {
 			# masukkan kategori dengan id 1 (uncategorized) jika kategori tidak dipilih.
 			#  ambil id terbaru dari artikel yang dimasukkan di database. 
 			$data[] = array(
-				'kategori_id' 	=> 1,
+				'kategori_id' 	=> 2,
 				'artikel_id' 	=> $this->instance->db->insert_id()
 			);
 		} else {

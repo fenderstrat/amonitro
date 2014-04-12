@@ -65,17 +65,17 @@ class Artikel_controller extends ci_controller
     {
         # file : libraries/artikel/artikel.php
         # ambil input artikel
-        $artikel = $this->artikel->input();
+        $post_add = $this->artikel->post_add();
 
         # jika nilai kembalian input artikel adalah false, redirect ke add artikel dan tampilkan pesan gagal
-        if($artikel !== false) {
+        if($post_add !== false) {
             # simpan ke database
-            $save = $this->artikel_model->save($artikel);
+            $this->artikel_model->save($post_add);
 
             # file : libraries/artikel/artikel.php
             # ambil input kategori
-            $kategori_artikel = $this->artikel->input_kategori();
-            $save_kategori_artikel = $this->artikel_model->save_kategori_artikel($kategori_artikel);
+            $post_add_kategori = $this->artikel->post_add_kategori();
+            $this->artikel_model->save_kategori_artikel($post_add_kategori);
 
             # file : libraries/services/message.php
             # tampilkan pesan berhasil
@@ -129,31 +129,34 @@ class Artikel_controller extends ci_controller
     public function update()
     {
         # variable id berita
-        $id = $this->uri->segment(4);
+        $id = $this->input->post('id');
 
         # file : libraries/artikel/artikel.php
         # ambil input artikel
-        $artikel = $this->artikel->input();
+        $artikel = $this->artikel->post_add();
 
         # jika nilai kembalian input artikel adalah false, redirect ke add artikel dan tampilkan pesan gagal
         if($artikel !== false) {
             # simpan ke database
-            $update = $this->artikel_model->update($artikel, $id);
+            $update = $this->artikel_model->update($id, $artikel);
 
             # file : libraries/artikel/artikel.php
             # ambil input kategori
-            $kategori_artikel = $this->artikel->input_kategori();
-            $save_kategori_artikel = $this->artikel_model->update_kategori_artikel($kategori_artikel, $id);
+            $kategori_artikel = $this->artikel->post_add_kategori();
+            // $save_kategori_artikel = $this->artikel_model->update_kategori_artikel($id, $kategori_artikel);
 
             # file : libraries/services/message.php
             # tampilkan pesan berhasil
-            $this->message->add_success();
+            $this->message->update_success();
         } else {
             # file : libraries/services/message.php
             # tampilkan pesan gagal
-            $this->message->add_fail();
+            $this->message->update_fail();
         }
-        redirect('admin/artikel/add');
+
+        # redirect ke halaman sebelumnya
+        $link = $this->input->server('HTTP_REFERER', TRUE);
+        redirect($link, 'location');
     }
 
     public function delete()

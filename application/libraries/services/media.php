@@ -32,9 +32,6 @@ class Media
                 $this->instance->message->upload_error();
                 return false;
             }
-        } else {
-            $data = '';
-            return $data;
         }
     }
 }

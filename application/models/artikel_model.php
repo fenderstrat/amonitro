@@ -9,12 +9,16 @@ class Artikel_model extends CI_Model
 
     public function all()
     {
-        return $this->db->get($this->table);
+        return $this->db
+            ->order_by('artikel_id', 'DESC')
+            ->get($this->table);
     }   
 
     public function find($id)
     {
-        return $this->db->where($this->table.'.artikel_id', $id)->get($this->table);
+        return $this->db
+            ->where($this->table.'.artikel_id', $id)
+            ->get($this->table);
     }   
 
     public function checked_kategori($id)
@@ -42,6 +46,13 @@ class Artikel_model extends CI_Model
     public function save_kategori_artikel($kategori_artikel)
     {
         $this->db->insert_batch($this->kategori_artikel_table, $kategori_artikel); 
+    }
+
+    public function update($id, $artikel)
+    {
+        $this->db
+            ->where('artikel_id', $id)
+            ->update($this->table, $artikel);
     }
     
 

@@ -19,7 +19,7 @@
 	<header class="header">
 		<a href="index.html" class="logo">
 			<!-- Add the class icon to your logo image or logo icon to add the margining -->
-                    		<?= img(array('src'=>'assets/img/anpanel.png', 'alt'=>'logo')) ?>
+            <?= img(array('src'=>'assets/img/anpanel.png', 'alt'=>'logo')) ?>
 		</a>
 
 		<!-- Load Navigation -->

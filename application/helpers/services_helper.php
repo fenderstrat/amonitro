@@ -9,7 +9,7 @@ function redata()
 	}
 }
 
-function getFirstParagraph($string)
+function get_first_paragraph($string)
 {
-	return strip_tags(substr($string,0, strpos($string, "</p>")+4));
+	return substr($string,0, strpos($string, "</p>")+4);
 }

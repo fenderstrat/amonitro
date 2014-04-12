@@ -139,6 +139,7 @@
                         </label>    
                     <?endforeach; ?>
                 <? endif ?>
+                <?= form_hidden('id', $artikel->artikel_id); ?>
             </div>
         </div><!-- /.box -->
     </div><!-- /.col-->

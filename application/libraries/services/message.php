@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class message
+class Message
 {
 	protected $instance;
 
@@ -39,6 +39,23 @@ class message
 		$this->instance->session->set_flashdata(
 			'add_fail',
 			'Data gagal ditambahkan'
+		);
+	}
+
+
+	public function update_success()
+	{
+		$this->instance->session->set_flashdata(
+			'add_success',
+			'Data berhasil diubah'
+		);
+	}
+
+	public function update_fail()
+	{
+		$this->instance->session->set_flashdata(
+			'add_fail',
+			'Data gagal diubah'
 		);
 	}
 

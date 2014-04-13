@@ -34,4 +34,13 @@ class Media
             }
         }
     }
+
+    public function remove($input)
+    {
+        $filename = 'assets/uploads/'.$input;
+        if (file_exists($filename)) {
+            @chmod($filename, 0755);
+            unlink($filename);
+        }
+    }
 }

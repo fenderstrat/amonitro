@@ -106,6 +106,7 @@
                             echo img($image_properties);
                         ?>
                     <? endif ?>
+                    <?= form_hidden('image', $artikel->image); ?>
                     <input type="file" name="ico" id="exampleInputFile">
                     <p class="help-block">Pilih File jika ingin Mengganti Icon dan File Harus Bertipe PNG/JPEG/GIF Max Ukuran 200kb</p>
                 </div>

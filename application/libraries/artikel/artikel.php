@@ -168,7 +168,9 @@ class Artikel
 			else :
 				$image_upload = $this->instance->media->upload('ico');
 				if ($image_upload  !== false) :
-
+					$this->instance->media->remove(
+						$this->instance->input->post('image')
+					);
 					$data = array(
 						'judul' => $this->instance->input->post('jd'),
 						'isi' => $this->instance->input->post('isi'),

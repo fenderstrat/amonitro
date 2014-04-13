@@ -57,18 +57,7 @@ class Artikel_model extends CI_Model
 
     public function update_kategori_artikel($id, $post)
     {
-
-        $data = array();
-        foreach($post as $array){
-                $data[] = array(
-                    'kategori_id'   => $array
-                );
-                
-        }
-        $this->db
-            ->where('artikel_id', $id)
-            ->update($this->table, $data);
-
+        $this->db->update_batch($this->kategori_artikel_table, $post,  'artikel_id');
     }
     
 

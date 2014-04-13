@@ -20,18 +20,12 @@ class Media
 
         $this->instance->load->library('upload', $config);
 
-        # jika ada file yang diupload, cek jika upload tidak error.
-        # jika tidak ada file yang diupload, return null.
-        if (! empty($_FILES[$input]['name'])) {
-            # jika file berhasil diupload, return nama filenya
-            # jika file gagal diupload return false
-            if ($this->instance->upload->do_upload($input)) {
-                $data = $this->instance->upload->data();
-                return $data['file_name'];
-            } else {
-                $this->instance->message->upload_error();
-                return false;
-            }
+        if ($this->instance->upload->do_upload($input)) {
+            $data = $this->instance->upload->data();
+            return $data['file_name'];
+        } else {
+            $this->instance->message->upload_error();
+            return false;
         }
     }
 

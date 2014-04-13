@@ -133,18 +133,18 @@ class Artikel_controller extends ci_controller
 
         # file : libraries/artikel/artikel.php
         # ambil input artikel
-        $artikel = $this->artikel->post_add();
+        $post_update = $this->artikel->post_update();
 
         # jika nilai kembalian input artikel adalah false, redirect ke add artikel dan tampilkan pesan gagal
-        if($artikel !== false) {
+        if($post_update !== false) {
             # simpan ke database
-            $update = $this->artikel_model->update($id, $artikel);
+            $this->artikel_model->update($id, $post_update);
 
             # file : libraries/artikel/artikel.php
             # ambil input kategori
-            $kategori_artikel = $this->artikel->post_add_kategori();
-            // $save_kategori_artikel = $this->artikel_model->update_kategori_artikel($id, $kategori_artikel);
-
+            $post_update_kategori = $this->artikel->post_update_kategori();
+            $expression = $this->artikel_model->update_kategori_artikel($id, $post_update_kategori);
+            print_r($expression);
             # file : libraries/services/message.php
             # tampilkan pesan berhasil
             $this->message->update_success();
@@ -156,7 +156,7 @@ class Artikel_controller extends ci_controller
 
         # redirect ke halaman sebelumnya
         $link = $this->input->server('HTTP_REFERER', TRUE);
-        redirect($link, 'location');
+        // redirect($link, 'location');
     }
 
     public function delete()

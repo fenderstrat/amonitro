@@ -38,21 +38,37 @@ class Artikel_model extends CI_Model
             ->get($this->kategori_table);
     }   
 
-    public function save($artikel)
+    public function save($post)
     {
-        $this->db->insert($this->table, $artikel);
+        $this->db->insert($this->table, $post);
     }
 
-    public function save_kategori_artikel($kategori_artikel)
+    public function save_kategori_artikel($post)
     {
-        $this->db->insert_batch($this->kategori_artikel_table, $kategori_artikel); 
+        $this->db->insert_batch($this->kategori_artikel_table, $post); 
     }
 
-    public function update($id, $artikel)
+    public function update($id, $post)
     {
         $this->db
             ->where('artikel_id', $id)
-            ->update($this->table, $artikel);
+            ->update($this->table, $post);
+    }
+
+    public function update_kategori_artikel($id, $post)
+    {
+
+        $data = array();
+        foreach($post as $array){
+                $data[] = array(
+                    'kategori_id'   => $array
+                );
+                
+        }
+        $this->db
+            ->where('artikel_id', $id)
+            ->update($this->table, $data);
+
     }
     
 

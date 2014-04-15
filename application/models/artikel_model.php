@@ -11,6 +11,7 @@ class Artikel_model extends CI_Model
     {
         return $this->db
             ->order_by('artikel_id', 'DESC')
+            ->where('status !=', 'sampah')
             ->get($this->table);
     }   
 
@@ -28,7 +29,9 @@ class Artikel_model extends CI_Model
                     $this->kategori_table,
                     $this->kategori_table.'.kategori_id = '.$this->kategori_artikel_table.'.kategori_id'
                 )
-            ->where('artikel_id', $id)->get($this->kategori_artikel_table);
+            ->where('artikel_id', $id)
+            ->where($this->kategori_table.'.kategori_id !=', 1)
+            ->get($this->kategori_artikel_table);
     }   
 
     public function unchecked_kategori($checked)
@@ -60,6 +63,15 @@ class Artikel_model extends CI_Model
         $this->db->update_batch($this->kategori_artikel_table, $post,  'artikel_id');
     }
     
+    public function delete($id)
+    {
+         $this->db->delete($this->table, array('artikel_id' => $id));
+    }
+
+    public function delete_kategori_artikel($id)
+    {
+         $this->db->delete($this->kategori_artikel_table, array('artikel_id' => $id));
+    }
 
 }
 

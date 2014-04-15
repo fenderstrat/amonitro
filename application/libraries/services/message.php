@@ -29,16 +29,16 @@ class Message
 	public function add_success()
 	{
 		$this->instance->session->set_flashdata(
-			'add_success',
-			'Data berhasil ditambahkan'
+			'success',
+			'Record berhasil ditambahkan'
 		);
 	}
 
 	public function add_fail()
 	{
 		$this->instance->session->set_flashdata(
-			'add_fail',
-			'Data gagal ditambahkan'
+			'fail',
+			'Record gagal ditambahkan'
 		);
 	}
 
@@ -46,16 +46,16 @@ class Message
 	public function update_success()
 	{
 		$this->instance->session->set_flashdata(
-			'add_success',
-			'Data berhasil diubah'
+			'success',
+			'Record berhasil diubah'
 		);
 	}
 
 	public function update_fail()
 	{
 		$this->instance->session->set_flashdata(
-			'add_fail',
-			'Data gagal diubah'
+			'fail',
+			'Record gagal diubah'
 		);
 	}
 
@@ -64,6 +64,37 @@ class Message
 		$this->instance->session->set_flashdata(
 			'upload_error',
 			$this->instance->upload->display_errors()
+		);
+	}
+
+	public function delete_image_success()
+	{
+		$this->instance->session->set_flashdata(
+			'success',
+			'Image berhasil dihapus'
+		);
+	}
+
+	public function delete_image_fail()
+	{
+		$this->instance->session->set_flashdata(
+			'fail',
+			'Image gagal dihapus'
+		);
+	}
+
+	public function sampah()
+	{
+		$this->instance->session->set_flashdata(
+			'success',
+			'Record dipindah ke kotak sampah'
+		);
+	}
+	public function delete()
+	{
+		$this->instance->session->set_flashdata(
+			'success',
+			'Record berhasil dihapus'
 		);
 	}
 

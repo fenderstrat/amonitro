@@ -1,4 +1,4 @@
-<?= form_open_multipart(base_url('admin/artikel/save')) ?>
+<?= form_open_multipart(base_url('admin/halaman/save')) ?>
 	<div class='row'>
 		<div class='col-md-8'>
 			<div class='box box-info'>
@@ -10,7 +10,7 @@
                     <?= $this->load->view('admin/layout/message'); ?>
 
 					<div class="form-group">
-						<label for="nama">Judul Artikel</label>
+						<label for="nama">Judul halaman</label>
 						<input type="text" name="jd" value="<?= $this->session->flashdata('jd');  ?>" class="form-control" id="nama" placeholder="Masukan Judul">
 					</div>
 					<div class="form-group">
@@ -20,13 +20,13 @@
 					</div>
 					<div class="form-group">
 						<label>Deskripsi SEO</label>
-						<textarea name="deskripsi" title="Ini Adalah SEO Deskrpisi Untuk Meningkatkan Hasil Pencairan Pada Search Engine. Jika Tidak Membutuhkannya Maka Tinggalkan Kosong Maka Kami Akan Menset Paragraf Pertama Dalam Artikel Anda Sebagai SEO Deskripsinya" class="form-control text-left" rows="3" placeholder="Masukan Deskrpsi SEO.">
+						<textarea name="deskripsi" title="Ini Adalah SEO Deskrpisi Untuk Meningkatkan Hasil Pencairan Pada Search Engine. Jika Tidak Membutuhkannya Maka Tinggalkan Kosong Maka Kami Akan Menset Paragraf Pertama Dalam halaman Anda Sebagai SEO Deskripsinya" class="form-control text-left" rows="3" placeholder="Masukan Deskrpsi SEO.">
 							<?= $this->session->flashdata('deskripsi');  ?>
 						</textarea>
 					</div>
 					<div class="form-group">
 						<label for="nama">Tags</label>
-						<input value="<?= $this->session->flashdata('tag'); ?>" type="text" name="tag" class="form-control" id="nama" placeholder="Masukan Tags Artikel Pisahkan Dengan Koma">
+						<input value="<?= $this->session->flashdata('tag'); ?>" type="text" name="tag" class="form-control" id="nama" placeholder="Masukan Tags halaman Pisahkan Dengan Koma">
 					</div>
 
 				</div>
@@ -58,11 +58,6 @@
 							<option value="draft">Draft</option>
 						</select>
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="exampleInputFile">Fitur Image</label>
-					<input type="file" name="ico" id="exampleInputFile">
-					<p class="help-block">Pilih File jika ingin Mengganti Icon dan File Harus Bertipe PNG/JPEG/GIF Max Ukuran 200kb</p>
 				</div>
 				<div class="box-footer">
 					<button type="submit" class="btn btn-primary">Simpan</button>

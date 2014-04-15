@@ -14,21 +14,9 @@
 </head>
 <body class="bg-black">
 	<div class="form-box" id="login-box">
-		<!-- Error Message -->
-		<? if($this->session->flashdata('login_failed')) : ?>
-			<div class="callout callout-danger">
-				<h4>
-					<p><?= $this->session->flashdata('login_failed') ?></p>
-				</h4>
-			</div>
-		<? endif ?>
-		<? if($this->session->flashdata('validation')) : ?>
-			<div class="callout callout-danger">
-				<h4>
-					<p><?= $this->session->flashdata('validation') ?></p>
-				</h4>
-			</div>
-		<? endif ?>
+		
+		<!-- load pesan -->
+        <?= $this->load->view('admin/layout/message'); ?>
 
 		<div class="header">Sign In</div>
 		<?= form_open(base_url('admin/process')) ?>

@@ -3,7 +3,7 @@
 class Base_admin extends CI_Controller
 {
 
-	public function index()
+	public function __construct()
 	{
 		parent::__construct();
 

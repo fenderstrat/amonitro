@@ -2,7 +2,7 @@
 
 require_once 'base_admin.php';
 
-class Admin_controller extends Base_admin {
+class Admin_controller extends CI_Controller {
 
 	public function __construct()
 	{
@@ -14,7 +14,8 @@ class Admin_controller extends Base_admin {
 		));
 		# Load class library
 		$this->load->library(array(
-			'admin/admin'
+			'admin/admin',
+			'services/message'
 		));
 	}
 
@@ -59,6 +60,9 @@ class Admin_controller extends Base_admin {
 			} else {
 				$this->message->login_failed();
 			} 
+		} else {
+			# pesan validasi error
+			$this->message->validation();
 		}
 		redirect('admin/login');
 	}

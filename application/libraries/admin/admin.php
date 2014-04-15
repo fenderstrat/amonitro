@@ -10,8 +10,7 @@ class Admin
 		$this->instance =& get_instance();
 		# Load library
 		$this->instance->load->library(array(
-			'form_validation',
-			'services/message'
+			'form_validation'
 		));
 		# Load helper
 		$this->instance->load->helper(array(
@@ -32,8 +31,6 @@ class Admin
 			);
 			return $data;
 		} else {
-			# pesan validasi error
-			$this->instance->message->validation();
 			return false;
 		}
 	}

@@ -1,6 +1,8 @@
 <?php if (defined('basepath')) exit('no direct script access allowed');
 
-class Artikel_controller extends ci_controller
+require APPPATH.'controllers/admin/base_admin.php';
+
+class Artikel_controller extends Base_admin
 {
     public function __construct()
     {
@@ -51,32 +53,33 @@ class Artikel_controller extends ci_controller
             $data['kategori'] = null;
         } 
 
-        $data['title'] = 'tambah artikel';
+        $data['title'] = 'Tambah Artikel';
         $data['template'] =  'admin/artikel/add';
         $this->load->view('admin/layout/master', $data);
     }
 
     public function save()
     {
-        // file : libraries/artikel/artikel.php
+        // @file : libraries/artikel/artikel.php
         // ambil input artikel
         $post = $this->artikel->post();
+        // ambil input kategori
+        $post_kategori = $this->artikel->post_kategori();
 
         // jika nilai kembalian input artikel adalah false, redirect ke add artikel dan tampilkan pesan gagal
         if($post !== false) {
             // simpan ke database
             $this->artikel_model->save($post);
 
-            // file : libraries/artikel/artikel.php
-            // ambil input kategori
-            $post_add_kategori = $this->artikel->post_add_kategori();
-            $this->artikel_model->save_kategori_artikel($post_add_kategori);
+            $this->artikel_model->save_kategori_artikel($post_kategori);
 
-            // file : libraries/services/message.php
+            // @file : libraries/services/message.php
             // tampilkan pesan berhasil
             $this->message->add_success();
         } else {
-            // file : libraries/services/message.php
+            // @file : libraries/services/message.php
+            // Tampilkan validasi error
+            $this->message->validation();
             // tampilkan pesan gagal
             $this->message->add_fail();
         }
@@ -85,7 +88,7 @@ class Artikel_controller extends ci_controller
 
     public function edit()
     {
-        // variable id berita
+        // variable id artikel
         $id = $this->uri->segment(4);
 
         // jika artikel tidak ditemukan, tampilkan 404 error
@@ -95,7 +98,7 @@ class Artikel_controller extends ci_controller
             show_404();
         }
         
-        // ambil kategori artikel
+        // ambil kategori artikel yang
         if($this->artikel_model->checked_kategori($id)->num_rows() !== 0) {
             $data['artikel_kategori'] = $this->artikel_model->checked_kategori($id)->result();
 
@@ -116,47 +119,116 @@ class Artikel_controller extends ci_controller
             $data['kategori'] = $this->kategori_model->all()->result();
         }
         
-        $data['title'] = 'edit artikel';
+        $data['title'] = 'Edit Artikel';
         $data['template'] =  'admin/artikel/edit';
         $this->load->view('admin/layout/master', $data);
     }
 
     public function update()
     {
-        // variable id berita
-        $id = $this->input->post('id');
+        // variable id artikel
+        $id = $this->input->post('id');        
 
-        // file : libraries/artikel/artikel.php
+        // @file : libraries/artikel/artikel.php
         // ambil input artikel
         $post = $this->artikel->post();
+        // ambil input kategori artikel
+        $post_kategori = $this->artikel->post_kategori();
 
         // jika nilai kembalian input artikel adalah false, redirect ke edit artikel dan tampilkan pesan gagal
         if($post !== false) {
-            // simpan ke database
+
+            // update ke database
             $this->artikel_model->update($id, $post);
 
-            // file : libraries/artikel/artikel.php
             // ambil input kategori
-            $post_update_kategori = $this->artikel->post_update_kategori();
-            // var_dump($post_update_kategori);
-            var_dump($this->artikel_model->update_kategori_artikel($id, $post_update_kategori));
-            // file : libraries/services/message.php
+            // lakukan proses delete per kategori
+            // lakukan proses insert kategori
+            $this->artikel_model->delete_kategori_artikel($id);
+            $this->artikel_model->save_kategori_artikel($post_kategori);
+            // @file : libraries/services/message.php
             // tampilkan pesan berhasil
             $this->message->update_success();
         } else {
-            // file : libraries/services/message.php
+            // @file : libraries/services/message.php
+            // Tampilkan validasi error
+            $this->message->validation();
             // tampilkan pesan gagal
             $this->message->update_fail();
         }
 
         // redirect ke halaman sebelumnya
         $link = $this->input->server('HTTP_REFERER', TRUE);
-        // redirect($link, 'location');
+        redirect($link, 'location');
+    }
+
+    public function sampah()
+    {
+        $id = $this->uri->segment(4); 
+        // @file : libraries/artikel/artikel.php
+        // ambil input artikel
+        $update = $this->artikel->sampah();
+        $this->artikel_model->update($id, $update);
+        $this->message->sampah();
+
+        // redirect ke halaman sebelumnya
+        $link = $this->input->server('HTTP_REFERER', TRUE);
+        redirect($link, 'location');
     }
 
     public function delete()
     {
-        // code...
+        // variable id artikel
+        $id = $this->uri->segment(4); 
+        // jika artikel tidak ditemukan, tampilkan 404 error
+        if($this->artikel_model->find($id)->num_rows() !== 0) {
+            $data = $this->artikel_model->find($id)->row();
+
+            // @file : libraries/artikel/artikel.php
+            // ambil input artikel
+            $update = $this->artikel->delete_image($data);
+            if ($update !== false) {
+                // update ke database
+                $this->artikel_model->delete($id);
+                $this->message->delete_kategori_artikel();
+                $this->message->delete();
+            } else {
+                $this->message->delete_image_fail();
+            }
+
+            // redirect ke halaman sebelumnya
+            $link = $this->input->server('HTTP_REFERER', TRUE);
+            redirect($link, 'location');
+        } else {
+            show_404();
+        }
+    }
+
+    public function delete_image()
+    {
+        // variable id artikel
+        $id = $this->uri->segment(4); 
+        // jika artikel tidak ditemukan, tampilkan 404 error
+        if($this->artikel_model->find($id)->num_rows() !== 0) {
+            $data = $this->artikel_model->find($id)->row();
+
+            // @file : libraries/artikel/artikel.php
+            // ambil input artikel
+            $update = $this->artikel->delete_image($data);
+            if ($update !== false) {
+                // update ke database
+                $this->artikel_model->update($id, $update);
+                $this->message->delete_image_success();
+            } else {
+                $this->message->delete_image_fail();
+            }
+
+            // redirect ke halaman sebelumnya
+            $link = $this->input->server('HTTP_REFERER', TRUE);
+            redirect($link, 'location');
+        } else {
+            show_404();
+        }
     }
 
 }

@@ -11,7 +11,6 @@ class artikel
         // Load library
         $this->instance->load->library(array(
             'form_validation',
-            'services/message',
             'services/media',
         ));
         // Load helper
@@ -82,9 +81,6 @@ class artikel
 
             return $data;
         } else {
-            // Tampilkan validasi error
-            $this->instance->message->validation();
-
             /**
              * @file  : helper/services_helper.php;
              * Repopulate data yang disubmit
@@ -95,62 +91,76 @@ class artikel
         }
     }
 
-    public function post_add_kategori()
+    public function post_kategori()
     {
-
         // simpan kategori sebagai array
         $data = array();
 
-        //cek jika kategori kosong
-        if ($this->instance->input->post('kategori') == "") {
-            // masukkan kategori dengan id 1 (uncategorized) jika kategori tidak dipilih.
-            //  ambil id terbaru dari artikel yang dimasukkan di database.
-            $data[] = array(
-                'kategori_id' 	=> 2,
-                'artikel_id' 	=> $this->instance->db->insert_id()
-            );
-        } else {
-            // masukkan kategori sebagai array.
-            //  ambil id terbaru dari artikel yang dimasukkan di database.
-            foreach ($this->instance->input->post('kategori') as $kategori_array) {
+        /**
+         * jika input 'id' ditemukan, $data akan menghasilkan proses insert
+         * jika input 'id' tidak ditemukan, $data akan menghasilkan proses update
+         */
+        if (filter_has_var(INPUT_POST, $this->instance->input->post('id') === false)) {
+
+            //cek jika kategori kosong
+            if ($this->instance->input->post('kategori') == "") {
+                // masukkan kategori dengan id 1 (uncategorized) jika kategori tidak dipilih.
+                //  ambil id terbaru dari artikel yang dimasukkan di database.
                 $data[] = array(
-                    'kategori_id' 	=> $kategori_array,
+                    'kategori_id' 	=> 1,
                     'artikel_id' 	=> $this->instance->db->insert_id()
                 );
+            } else {
+                // masukkan kategori sebagai array.
+                //  ambil id terbaru dari artikel yang dimasukkan di database.
+                foreach ($this->instance->input->post('kategori') as $kategori_array) {
+                    $data[] = array(
+                        'kategori_id' 	=> $kategori_array,
+                        'artikel_id' 	=> $this->instance->db->insert_id()
+                    );
 
+                }
+            }
+        } else {
+
+             //cek jika kategori kosong
+            if ($this->instance->input->post('kategori') == "") {
+                // masukkan kategori dengan id 1 (uncategorized) jika kategori tidak dipilih.
+                // ambil id terbaru dari artikel yang dimasukkan di database.
+                $data[] = array(
+                    'kategori_id'   => 1,
+                    'artikel_id'    => $this->instance->input->post('id')
+                );
+            } else {
+                // masukkan kategori sebagai array.
+                // ambil id terbaru dari artikel yang dimasukkan di database.
+                foreach ($this->instance->input->post('kategori') as $kategori_array) {
+                    $data[] = array(
+                        'kategori_id'   => $kategori_array,
+                        'artikel_id'    => $this->instance->input->post('id')
+                    );
+
+                }
             }
         }
 
         return $data;
     }
 
-    public function post_update_kategori()
+    public function sampah()
     {
+        return array('status'=>'sampah');
+    }
 
-        // simpan kategori sebagai array
-        $data = array();
-
-        //cek jika kategori kosong
-        if ($this->instance->input->post('kategori') == "") {
-            // masukkan kategori dengan id 1 (uncategorized) jika kategori tidak dipilih.
-            // ambil id terbaru dari artikel yang dimasukkan di database.
-            $data[] = array(
-                'artikel_id' 	=> $this->instance->input->post('id'),
-                'kategori_id' 	=> 1
-            );
+    public function delete_image($data)
+    {
+        $delete = $this->instance->media->remove($data->image);
+        if ($delete === true) {
+            $update = array('image' => null);
+            return $update;
         } else {
-            // masukkan kategori sebagai array.
-            // ambil id terbaru dari artikel yang dimasukkan di database.
-            foreach ($this->instance->input->post('kategori') as $kategori_array) {
-                $data[] = array(
-                    'artikel_id' 	=> $this->instance->input->post('id'),
-                    'kategori_id' 	=> $kategori_array
-                );
-
-            }
+            return false;
         }
-
-        return $data;
     }
 
 }

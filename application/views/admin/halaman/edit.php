@@ -1,4 +1,4 @@
-<?= form_open_multipart(base_url('admin/artikel/update')) ?>
+<?= form_open_multipart(base_url('admin/halaman/update')) ?>
     <div class='row'>
         <div class='col-md-8'>
             <div class='box box-info'>
@@ -10,23 +10,23 @@
                     <?= $this->load->view('admin/layout/message'); ?>
 
                     <div class="form-group">
-                        <label for="nama">Judul Artikel</label>
-                        <input type="text" name="jd" value="<?= $artikel->judul ?>" class="form-control" id="nama" placeholder="Masukan Judul">
+                        <label for="nama">Judul halaman</label>
+                        <input type="text" name="jd" value="<?= $halaman->judul ?>" class="form-control" id="nama" placeholder="Masukan Judul">
                     </div>
                     <div class="form-group">
-                        <textarea id="editor1" name="isi" artikels="10" cols="80">
-                            <?= $artikel->isi ?>
+                        <textarea id="editor1" name="isi" halamans="10" cols="80">
+                            <?= $halaman->isi ?>
                         </textarea>
                     </div>
                     <div class="form-group">
                         <label>Deskripsi SEO</label>
-                        <textarea name="deskripsi" title="Ini Adalah SEO Deskrpisi Untuk Meningkatkan Hasil Pencairan Pada Search Engine. Jika Tidak Membutuhkannya Maka Tinggalkan Kosong Maka Kami Akan Menset Paragraf Pertama Dalam Artikel Anda Sebagai SEO Deskripsinya" class="form-control text-left" artikels="3" placeholder="Masukan Deskrpsi SEO.">
-                            <?= $artikel->deskripsi  ?>
+                        <textarea name="deskripsi" title="Ini Adalah SEO Deskrpisi Untuk Meningkatkan Hasil Pencairan Pada Search Engine. Jika Tidak Membutuhkannya Maka Tinggalkan Kosong Maka Kami Akan Menset Paragraf Pertama Dalam halaman Anda Sebagai SEO Deskripsinya" class="form-control text-left" halamans="3" placeholder="Masukan Deskrpsi SEO.">
+                            <?= $halaman->deskripsi  ?>
                         </textarea>
                     </div>
                     <div class="form-group">
                         <label for="nama">Tags</label>
-                        <input value="<?= $artikel->tag ?>" type="text" name="tag" class="form-control" id="nama" placeholder="Masukan Tags Artikel Pisahkan Dengan Koma">
+                        <input value="<?= $halaman->tag ?>" type="text" name="tag" class="form-control" id="nama" placeholder="Masukan Tags halaman Pisahkan Dengan Koma">
                     </div>
 
                 </div>
@@ -43,7 +43,7 @@
                         <div id="datetimepicker1" class="input-append date">
                             <div class="form-group">
                                 <div class='col-md-8 input-group date' id='datetimepicker1'>
-                                    <input placeholder="<?= date('Y/m/d H:i') ?>" value="<?= $artikel->tanggal ?>"  type='text' name="tgl" class="form-control" />
+                                    <input placeholder="<?= date('Y/m/d H:i') ?>" value="<?= $halaman->tanggal ?>"  type='text' name="tgl" class="form-control" />
                                     <span value="" class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
@@ -54,7 +54,7 @@
                     <label>Status Publish:</label>
                     <div class='col-md-8 input-group'>
                         <select name="sts" class="form-control">
-                            <? if($artikel->status === 'draft')  : ?>
+                            <? if($halaman->status === 'draft')  : ?>
                                 <option value="publish">Publish</option>
                                 <option value="draft" selected>Draft</option>
                             <? else : ?>
@@ -64,60 +64,14 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">Fitur Image</label>
-                    <? if (!empty($artikel->image)) : ?>
-                        <? $image_properties = array(
-                            'src' => 'assets/uploads/'.$artikel->image,
-                            'alt' => 'feature image',
-                            'class' => 'img-responsive'
-                            );
-                            echo img($image_properties);
-                            echo br();
-                            echo '<a onclick="return pesan()" class="btn btn-danger pull-right" href='.base_url('admin/artikel/delete_image/'.$artikel->artikel_id).'>Hapus</a>';
-                            echo '<div class="clearfix"></div>';
-                            echo '<hr>';
-                        ?>
-                    <? endif ?>
-                    <?= form_hidden('image', $artikel->image); ?>
-                    <input type="file" name="ico" id="exampleInputFile">
-                    <p class="help-block">Pilih File jika ingin Mengganti Icon dan File Harus Bertipe PNG/JPEG/GIF Max Ukuran 200kb</p>
-                </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
-        </div><!-- /.box -->
-        <div class='box box-info'>
-            <div class='box-body pad'>
-                <div class="form-group clearfix"> 
-                    <label for="exampleInputFile">Kategori</label>
-                </div>
-                
-                <? if ($artikel_kategori !== null) : ?>
-                    <? foreach($artikel_kategori as $row) :?>
-                        <label class="badge bg-blue">
-                                <input type="checkbox" name="kategori[]" value="<?= $row->kategori_id ?>" checked="checked">
-                                <i class="icon-only icon-bold bigger-110"></i>
-                                <?= $row->kategori ?>
-                        </label>    
-                    <? endforeach ?>
-                <? endif ?>
-
-                <? if ($kategori !== null) : ?>
-                    <? foreach($kategori as $row) :?>
-                        <label class="badge bg-blue">
-                                <input type="checkbox" name="kategori[]" value="<?= $row->kategori_id ?>">
-                                <i class="icon-only icon-bold bigger-110"></i>
-                                <?= $row->kategori ?>
-                        </label>    
-                    <?endforeach; ?>
-                <? endif ?>
-                <?= form_hidden('id', $artikel->artikel_id); ?>
-            </div>
+            <?= form_hidden('id', $halaman->halaman_id); ?>
         </div><!-- /.box -->
     </div><!-- /.col-->
-</div><!-- ./artikel -->
+</div><!-- ./halaman -->
 <? form_close() ?>
 
 <?= link_tag('assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css') ?>

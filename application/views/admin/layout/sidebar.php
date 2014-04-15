@@ -39,7 +39,7 @@
   				</ul>
   			</li>
   			<li>
-  				<?= anchor(base_url('admin/Halaman'), '<span><i class="fa fa-copy"></i> Halaman</span>', array('title' => 'Halaman')); ?>
+  				<?= anchor(base_url('admin/halaman'), '<span><i class="fa fa-copy"></i> Halaman</span>', array('title' => 'Halaman')); ?>
   			</li>
   			<li>
   				<?= anchor(base_url('admin/media'), '<span><i class="fa fa-camera-retro"></i> Media</span>', array('title' => 'Media')); ?>

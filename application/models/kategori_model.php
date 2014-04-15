@@ -7,9 +7,8 @@ class Kategori_model extends CI_Model
     
     public function all()
     {
-        return $this->db->get($this->table);
+        return $this->db->get_where($this->table, array('kategori_id !=' => 1));
     }
-
 }
 
 /* End of file KategoriModel.php */

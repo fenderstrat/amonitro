@@ -33,8 +33,9 @@ class Media
     {
         $filename = 'assets/uploads/'.$input;
         if (file_exists($filename)) {
-            @chmod($filename, 0755);
+            @chmod($filename, 0777);
             unlink($filename);
+            return true;
         }
     }
 }

@@ -63,15 +63,15 @@ class Artikel_controller extends Base_admin
         // @file : libraries/artikel/artikel.php
         // ambil input artikel
         $post = $this->artikel->post();
-        // ambil input kategori
-        $post_kategori = $this->artikel->post_kategori();
 
         // jika nilai kembalian input artikel adalah false, redirect ke add artikel dan tampilkan pesan gagal
         if($post !== false) {
             // simpan ke database
             $this->artikel_model->save($post);
 
-            $this->artikel_model->save_kategori_artikel($post_kategori);
+            // ambil input kategori
+            $post_kategori = $this->artikel->post_kategori();
+            var_dump($this->artikel_model->save_kategori_artikel($post_kategori));
 
             // @file : libraries/services/message.php
             // tampilkan pesan berhasil
@@ -83,7 +83,7 @@ class Artikel_controller extends Base_admin
             // tampilkan pesan gagal
             $this->message->add_fail();
         }
-        redirect('admin/artikel/add');
+        // redirect('admin/artikel/add');
     }
 
     public function edit()

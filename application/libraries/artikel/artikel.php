@@ -97,8 +97,8 @@ class artikel
         $data = array();
 
         /**
-         * jika input 'id' tidak ditemukan, $data akan menghasilkan proses insert
-         * jika input 'id' ditemukan, $data akan menghasilkan proses update
+         * jika input 'id' ditemukan, $data akan menghasilkan proses insert
+         * jika input 'id' tidak ditemukan, $data akan menghasilkan proses update
          */
         if ($this->instance->input->post('id')  == 0) {
 

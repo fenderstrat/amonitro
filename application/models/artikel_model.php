@@ -19,7 +19,11 @@ class Artikel_model extends CI_Model
     {
         return $this->db
             ->order_by('artikel_id', 'DESC')
+<<<<<<< HEAD
             ->where('status !=', 'sampah')
+=======
+            ->where('status =', 'publish')
+>>>>>>> b861d05c5457c279fe07d6c0af5f09f2219c60cf
             ->limit($per_page, $offset)
             ->get($this->table);
     }   
@@ -81,6 +85,25 @@ class Artikel_model extends CI_Model
     {
          $this->db->delete($this->kategori_artikel_table, array('artikel_id' => $id));
     }
+
+    // HALAMAN UTAMA
+    
+    public function get_id($id, $status)
+    {
+       return $this->db
+        ->where('artikel_id', $id)
+        ->where('status', $status)
+        ->get($this->table);
+        return $query;
+    }
+
+    public function get_all($per_page, $offset)
+    {
+        return $this->db
+            ->order_by('artikel_id', 'DESC')
+            ->where('status =', 'publish')
+            ->get($this->table);
+    }   
 
 }
 

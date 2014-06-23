@@ -11,7 +11,11 @@ class Welcome extends CI_Controller {
 	{
 		// Pagination
 		$offset = $this->uri->segment(2);
+<<<<<<< HEAD
 		$base_url = base_url('welcome');
+=======
+		$base_url = base_url();
+>>>>>>> b861d05c5457c279fe07d6c0af5f09f2219c60cf
 		$per_page = 2;
 		$total_rows = $this->artikel_model->all()->num_rows();
 		Pagination::main($base_url, $per_page, $total_rows);
@@ -23,7 +27,11 @@ class Welcome extends CI_Controller {
 		}
 
 		$data['title'] = 'Komisi Pemilihan Umum Kabupaten Mukomuko';
+<<<<<<< HEAD
 		$this->load->view('home',$data);
+=======
+		$this->load->view('template/home',$data);
+>>>>>>> b861d05c5457c279fe07d6c0af5f09f2219c60cf
 	}
 }
 

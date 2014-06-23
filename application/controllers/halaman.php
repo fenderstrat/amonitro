@@ -12,6 +12,7 @@ class Halaman extends CI_Controller {
 
 	public function index()
 	{
+<<<<<<< HEAD
 		$id = $this->uri->segment(2);
 		if ($this->halaman_model->find($id)->num_rows() !=0) {
 			$data['halaman'] = $this->halaman_model->find($id)->row();
@@ -22,6 +23,21 @@ class Halaman extends CI_Controller {
 		$data['title'] = 'halaman';
 		$data['content'] = 'single';
 		$this->load->view('template/index', $data);
+=======
+		$id = $this->uri->segment(3);
+		if ($this->halaman_model->find($id)->num_rows() !=0) {
+			$data['halaman'] = $this->halaman_model->find($id)->row();
+			$data['title'] = $data['halaman']->judul;
+			$data['description'] = $data['halaman']->deskripsi;
+			$data['tanggal'] = null;
+			$data['tag'] = $data['halaman']->tag;
+			$data['isi'] = $data['halaman']->isi;
+			$data['content'] = 'single';
+			$this->load->view('template/index', $data);
+		} else {
+			show_404();
+		}
+>>>>>>> b861d05c5457c279fe07d6c0af5f09f2219c60cf
 	}
 
 }

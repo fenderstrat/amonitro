@@ -1,0 +1,607 @@
+/*
+	Template		: KPU
+	Author			: Woro Apri Riyanto :)
+	Version			: 1.0
+
+*/
+
+
+
+@import"reset.css";
+@import"text.css";
+
+
+body {
+	color: #5e5e5e;
+	font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	//background: #fb7c2d;
+}
+
+.kanan {
+	float: right;
+}
+.kiri {
+	float: left;
+}
+
+
+.clear {
+	clear: both;
+}
+
+
+
+.header-wrapper,
+.navigasi-wrapper,
+.slider-wrapper,
+.content-wrapper,
+.footer-wrapper {
+	width: 100%;
+	margin: 0 auto;
+}
+
+
+/*
+	header
+-------------------------------*/
+.header {
+	height: 100px;
+	padding-top: 20px;
+	padding-left: 10px;
+	background: #ffffff;
+	border-bottom: solid 2px #cb5107
+}
+.logo img {
+	max-height: 80px;
+}
+
+
+/*
+	navigasi
+-------------------------------*/
+.navigasi-wrapper {
+
+}
+.navigasi {
+	height: 30px;
+	background: #cb5107;
+	padding-top: 15px;
+}
+.navigasi ul {}
+.navigasi ul li {
+	padding-bottom: 10px;
+	margin-left: 10px;
+
+	float: left;
+	list-style: none;
+	text-transform: uppercase;
+	font-size: 12px;
+	padding-left: 15px;
+	//border-left: solid 1px #c36e5f;
+}
+.navigasi ul li:first-child {
+	border-left: none
+}
+.navigasi ul li a {
+	color: #ffffff;
+	//margin: 5px;
+	text-decoration: none;
+}
+.navigasi ul li a:hover {
+	color: #333
+}
+.navigasi li:hover a > ul {
+	background: #e7e7cd;
+}
+
+
+/*dropdown 1*/
+.navigasi ul ul {
+	margin-top:3px;
+	z-index: 999;
+	display: none;
+	position: absolute;
+
+	-webkit-transition:all 0.2s ease-in-out;
+    -moz-transition:all 0.2s ease-in-out;
+    -ms-transition:all 0.2s ease-in-out;
+    -o-transition:all 0.2s ease-in-out;
+    transition:all 0.2s ease-in-out;
+}
+.navigasi ul li:hover > ul {
+	display: block;
+	position: absolute;
+}
+.navigasi ul li ul li a {
+	padding: 10px;
+	display: block;
+	width: 200px;
+	color: #656333; /* tambahan */
+
+	-webkit-transition:all 0.2s ease-in-out;
+    -moz-transition:all 0.2s ease-in-out;
+    -ms-transition:all 0.2s ease-in-out;
+    -o-transition:all 0.2s ease-in-out;
+    transition:all 0.2s ease-in-out;
+}
+.navigasi ul li ul li a:hover {
+	color: #002a11;
+	background:#dedec6;
+}
+.navigasi ul li ul {
+	margin-left: 0px;
+	margin-top: 10px;
+}
+.navigasi ul ul li {
+	color: #5b8100;
+	list-style-position: inside;
+	padding-left: 0px;
+	margin: 0px 0 0 0px;
+	background: #e7e7cd;
+	float: none;
+	position: relative;
+	border-left: none;
+}
+.navigasi ul ul li:hover {
+	color: #fffefe
+}
+.navigasi li ul li:last-child {
+	border-radius: 0;
+}
+
+
+/*dropdown 2*/
+.navigasi ul ul ul {
+	margin-top:100px;
+	z-index: 999;
+	display: none;
+	position: absolute;
+	visibility: hidden;
+}
+.navigasi ul li ul li:hover > ul {
+	visibility: visible;
+	position: absolute;
+}
+.navigasi ul li ul li ul {
+	left: 100%;
+	margin-top: -36px;
+	position: relative;
+	margin-left: 0
+}
+.navigasi ul li ul li ul li a {
+	width: 200px;
+	padding-right: 0;
+}
+
+
+.slider-wrapper {
+	background: #E08D11;
+	border-bottom: solid 2px #cb5107
+}
+.slider {
+	height: 350px;
+	//margin-bottom: 80px;
+	padding: 10px 10px 80px 10px;
+}
+.slider img {
+	width: 960px;
+	height: 400px;
+}
+
+/*
+	Slideshow
+*/
+
+#slides {
+	position: relative;
+	//background: #ffffff;
+	//padding: 10px;
+	z-index: 100;
+}
+
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+
+.slides_container {
+	margin: 0 auto;
+	width:960px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+
+	z-index: -99;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container div.slide {
+	width:960px;
+	height:430px;
+	display:block;
+}
+
+#slides .next,#slides .prev {
+	position:absolute;
+	top:30px;
+	margin-left: -5px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:101;
+}
+
+#slides .next {
+	margin-left: 975px
+}
+
+.pagination {
+	z-index: 10000;
+	//float: right;
+	margin: -25px auto 0px auto;
+	width: 50px;
+	background: red;
+	//margin: 0 auto
+}
+
+.pagination li {
+	float:left;
+	margin:1px 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:11px;
+	height:0;
+	padding-top:11px;
+	background-image:url(image/slider-pagination-a.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+.pagination li.current a {
+	//background-position:0 -12px;
+	background-image:url(image/slider-pagination.png);
+}
+
+.caption {
+	z-index:500;
+	position:absolute;
+	bottom:-35px;
+	left:0;
+	height:60px;
+	padding:5px 20px 0 20px;
+	background:#000;
+	background:rgba(161, 108, 202, 0.4);
+	width:601px;
+	font-size:1.3em;
+	line-height:1.33;
+	color:#fff;
+	border-bottom:5px solid #6d4b85;
+	text-shadow:none;
+	visibility: hidden;
+}
+.caption p {
+	padding-right: 100px;	
+}
+.caption a {
+	color: #ffffff;
+}
+
+
+
+
+.content-wrapper {
+	width: 1360px;
+	padding-top: 40px;
+	//padding: 10px;
+	background: #ffffff
+}
+.main-wrapper {
+	background: red;
+}
+
+.main {
+	width: 1010px;
+	min-height: 750px;
+	float: left;
+	padding: 0px 20px 50px 0;
+}
+.post {}
+.post img {
+	max-width: 750px;
+}
+h2.post-judul {
+	font-size: 24px;
+	text-transform: capitalize;
+} 
+
+
+
+
+.menu-kiri {
+	width: 200px;
+	padding: 10px;
+	margin-left: 10px;
+	float: left;
+	background: #f4f4f4;
+	border: solid 1px #cb5107
+}
+.menu-kiri ul {}
+.menu-kiri ul li {
+	list-style: none;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+.menu-kiri ul li a {
+	color: #996600;
+	text-decoration: none;
+}
+.menu-kiri ul li a:hover {
+	text-decoration: underline;
+}
+.menu-kiri h3 {
+	font-size: 12px;
+	background: #cb5107;
+	padding: 5px;
+	color: #ffffff
+}
+
+.news {
+	width: 750px;
+	float: right;
+	//background: #333
+}
+.sidebar {
+	width: 300px;
+	min-height: 700px;
+	float: right;
+	margin-right: 10px;
+}
+.widget {
+	margin-bottom: 40px;
+}
+.widget img {
+	max-width: 300px;
+}
+.widget ul {}
+.widget ul li {
+	margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.widget ul li a {
+	color: #bc3b01;
+	text-decoration: none;
+}
+
+
+/*
+	pagination 
+-------------------------------*/
+.halaman-wrapper {
+	height: 80px;
+	margin: 0 30px 0 20px;
+}
+.halaman {
+	width: auto;
+	margin: 0 auto;
+	font-weight: bold;
+}
+.halaman a {
+	float: left;
+	padding: 5px;
+	margin: 8px;
+	font-size: 14px;
+	text-decoration: none;
+	border-bottom: solid 2px transparent
+}
+.halaman a:hover {
+	border-bottom: solid 2px #d4d4c3
+}
+.currents {
+	float: left;
+	padding: 5px;
+	margin: 8px;
+	font-size: 14px;
+}
+.digit-all a {
+	float: left;
+	padding: 5px;
+	margin: 8px;
+	font-size: 14px;
+}
+.digit-all  {
+	float: left;
+	
+}
+
+
+.halaman-wrapper {
+	border-bottom: solid 2px #fafafa;
+	border-top: solid 2px #fafafa;
+}
+.halaman a {
+	color: #333333;
+}
+.digit {
+}
+.currents  {
+	//background: #453e34;
+	color: #333333
+}
+.digit-all a {
+	//background: #faf6f3
+}
+.digit-all a {
+	color: #453e34;
+}
+
+
+.footer {
+	font-size: 12px;
+	height: 80px;
+	color: #ffffff;
+	padding-top: 10px;
+	border-top: solid 2px #cb5107;
+	background: #E08D11;
+}
+.footer .copyright {
+	float: left;
+	margin: 10px;
+}
+.footer .alamat {
+	float: right;
+	margin: 10px;
+}
+.footer p {
+	margin-bottom: 5px
+}
+
+
+
+/*
+	arsip 
+-------------------------------*/
+.arsip {
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	border-bottom: solid 2px #e48564
+}
+.arsip:last-child {
+	border-bottom: none;
+}
+.arsip-thumb {
+	float: left;
+	width: 200px;
+	height: 200px;
+	padding: 5px;
+	margin-bottom: 10px;
+	background: #e7e7cd;
+}
+.arsip-thumb:hover {
+	background: #E6E2DE;
+}
+.arsip-thumb img {
+	width: 200px;
+	height: 200px;
+}
+.arsip-summary {
+	float: right;
+	width: 520px;
+}
+.arsip-summary h3 {
+	font-weight: normal;
+	text-transform: capitalize;
+	margin-bottom: 10px;
+}
+.arsip-summary h3 a {
+	text-decoration: none;
+	//color: #ff5500;
+	color: #5e5e5e
+}
+.arsip-summary h3 a:hover {
+	text-decoration: none;
+	color: #333333
+}
+
+
+.older-post {
+	float: right;
+	width: 750px;
+	margin-left: 10px;
+	padding-top: 10px;
+	border-top: solid 2px #e48564;
+}
+.arsips {
+	margin-bottom: 20px;
+	width: 270px;
+	height: 100px;
+	float: left;
+	margin-right: 20px;
+}
+.arsip-thumbs {
+	float: left;
+	width: 50px;
+	height: 50px;
+	padding: 5px;
+	margin-bottom: 10px;
+	background: #e7e7cd;
+}
+.arsip-thumbs:hover {
+	background: #E6E2DE;
+}
+.arsip-thumbs img {
+	width: 50px;
+	height: 50px;
+}
+.arsip-summarys {
+	float: right;
+	width: 200px;
+}
+.arsip-summarys h3 {
+	font-weight: normal;
+	text-transform: capitalize;
+	margin-bottom: 10px;
+	font-size: 12px
+}
+.arsip-summarys h3 a {
+	text-decoration: none;
+	color: #5e5e5e
+}
+.arsip-summarys h3 a:hover {
+	text-decoration: none;
+	color: #333333
+}
+
+.meta-date {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	display: block;
+	font-weight: normal;
+	color: #aaaaaa;
+	font-weight: normal;
+}
+.judul {
+	//background: #fff url(image/judul-bg.png) repeat-x top left;
+}
+.judul h2.juduls,
+.judul h3.juduls,
+.older-post h2 {
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: bold;
+	float: left;
+	padding-right: 20px;
+	background: #ffffff
+}
+
+.search {
+	margin-top: 20px;
+	padding-right: 10px;
+}
+.search input[type="text"] {
+	border: solid 1px #ccc;
+	padding: 5px;
+}
+.search input[type="submit"] {
+	background: #d13802;
+	padding: 5px;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+}

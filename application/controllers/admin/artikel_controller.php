@@ -71,7 +71,7 @@ class Artikel_controller extends Base_admin
 
             // ambil input kategori
             $post_kategori = $this->artikel->post_kategori();
-            var_dump($this->artikel_model->save_kategori_artikel($post_kategori));
+            $this->artikel_model->save_kategori_artikel($post_kategori);
 
             // @file : libraries/services/message.php
             // tampilkan pesan berhasil

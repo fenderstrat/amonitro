@@ -15,6 +15,15 @@ class Artikel_model extends CI_Model
             ->get($this->table);
     }   
 
+    public function all_limit($per_page, $offset)
+    {
+        return $this->db
+            ->order_by('artikel_id', 'DESC')
+            ->where('status !=', 'sampah')
+            ->limit($per_page, $offset)
+            ->get($this->table);
+    }   
+
     public function find($id)
     {
         return $this->db
